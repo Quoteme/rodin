@@ -60,6 +60,8 @@
             --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath runtimeLibs} \
             --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.jdk17 ]} \
             --set-default GDK_BACKEND x11 \
+            --prefix XDG_DATA_DIRS : ${pkgs.glib.getSchemaDataDirPath pkgs.gtk3} \
+            --prefix XDG_DATA_DIRS : ${pkgs.glib.getSchemaDataDirPath pkgs.gsettings-desktop-schemas} \
             --add-flags "-vm ${pkgs.jdk17}/bin/java"
 
           if [ -f $out/opt/rodin/icon.xpm ]; then
